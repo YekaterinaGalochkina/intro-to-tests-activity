@@ -1,19 +1,63 @@
 from main import count_a_letter
 import pytest
 
-def test_demo_one():
-    num_1 = 8
-    num_2 = 9
 
-    result = num_1 + num_2
+# Basic count of a letter in a word:
 
-    assert result == 17
+def test_basic_count_letter_in_sentence():
+    letter = 'a'
+    sentence = 'banana'
+    score = count_a_letter(sentence, letter)
+    assert score == 3
 
-def test_demo_two():
-    num_1 = 18
-    num_2 = 24
+#   Sentence with spaces and punctuation:
 
-    result = num_1 + num_2
+def test_sentance_with_spaces_and_punctuation():
+    letter = 'o'
+    sentence = 'Hello, world!'
+    score = count_a_letter(sentence, letter)
+    assert score == 2
 
-    assert result == 42
-# Delete the demo tests and add your tests here 
+#   Empty sentence:
+
+def test_empty_sentence():
+    letter = 'a'
+    sentence = ''
+    score = count_a_letter(sentence, letter)
+    assert score == None
+
+
+# 	Letter is not in the sentence:
+
+def test_letter_is_not_in_sentence():
+    letter = 'z'
+    sentence = 'hello'
+    score = count_a_letter(sentence, letter)
+    assert score == 0
+
+
+# 	Letter is uppercase but exists in lowercase in the sentence:
+
+def test_letter_is_uppercase():
+    letter = 'A'
+    sentence = 'apple'
+    score = count_a_letter(sentence, letter)
+    assert score == 0
+
+
+# 	Letter is a special character or number (invalid input):
+
+def test_letter_is_a_number():
+    letter = '1'
+    sentence = 'test123'
+    score = count_a_letter(sentence, letter)
+    assert score == None
+
+# 	Sentence contains only one repeated letter:
+
+def test_sentence_contain_only_one_repeated_letter():
+    letter = 'a'
+    sentence = 'aaaaa'
+    score = count_a_letter(sentence, letter)
+    assert score == 5
+
